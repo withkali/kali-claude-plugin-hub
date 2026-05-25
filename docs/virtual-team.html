@@ -3,106 +3,137 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>virtual-team · 가이드</title>
-<style>
-  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --fg:#e6edf3; --muted:#9198a1; --accent:#58a6ff; --code:#0b0f14; }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo",sans-serif; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 40px 20px 80px; }
-  a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
-  h1 { font-size: 1.9rem; margin: 0 0 4px; }
-  h2 { margin: 36px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-  h3 { margin: 22px 0 8px; }
-  pre { background: var(--code); border:1px solid var(--border); border-radius:8px; padding:14px 16px; overflow:auto; }
-  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92em; }
-  p code, li code, td code { background:#1f2630; padding:1px 6px; border-radius:5px; }
-  table { border-collapse: collapse; width:100%; margin:12px 0; font-size:.94rem; }
-  th, td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
-  th { background:#1f2630; }
-  .muted { color: var(--muted); }
-  .pill { font-size:.74rem; border:1px solid var(--border); border-radius:20px; padding:1px 9px; }
-  .top { color:var(--muted); font-size:.85rem; }
-  blockquote { border-left:3px solid var(--accent); margin:12px 0; padding:4px 14px; color:var(--muted); background:var(--card); border-radius:0 8px 8px 0; }
-  footer { margin-top:48px; color:var(--muted); font-size:.85rem; border-top:1px solid var(--border); padding-top:16px; }
-</style>
+<title>virtual-team · Claude Plugin Hub</title>
+<meta name="description" content="기획→개발→운영을 자동화하는 22개 역할의 가상 개발팀 플러그인." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-<div class="wrap">
-  <p class="top"><a href="index.html">← Hub</a></p>
-  <h1>virtual-team</h1>
-  <p class="muted">서비스 아이디어를 받아 기획→개발→(운영)까지 자동화하는 가상 개발팀 플러그인.</p>
 
-  <h2>설치</h2>
-  <pre><code>/plugin marketplace add withkali/kali-claude-plugin-hub
-/plugin install virtual-team@kali-claude-plugin-hub</code></pre>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><span class="logo">k</span> Claude Plugin Hub</a>
+    <div class="nav-links">
+      <a href="index.html#plugins">플러그인</a>
+      <a href="virtual-team.html">가이드</a>
+      <a href="https://github.com/withkali/kali-claude-plugin-hub" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
 
-  <h2>슬래시 명령</h2>
-  <table>
-    <tr><th>명령</th><th>설명</th></tr>
-    <tr><td><code>/new-service &lt;아이디어&gt;</code></td><td>새 서비스의 Phase 1(기획 정합)을 시작. slug·기획서 생성, 파트 질의 수집, 보강, 운영자 승인 요청.</td></tr>
-    <tr><td><code>/team-roster</code></td><td>역할 로스터와 모델/단계 정책 출력.</td></tr>
-    <tr><td><code>/activate-phase3 &lt;slug&gt;</code></td><td>해당 제품에 테스트·배포·모니터링·장애관리 단계를 편입.</td></tr>
-  </table>
+<div class="container">
+  <div class="crumb"><a href="index.html">Hub</a> · <a href="index.html#plugins">플러그인</a> · virtual-team</div>
 
-  <h2>모델 정책 (작업 유형 기준)</h2>
-  <table>
-    <tr><th>작업</th><th>모델</th></tr>
-    <tr><td>웹 검색 · fetch · 문서 조회</td><td><span class="pill">haiku</span></td></tr>
-    <tr><td>승인된 plan 실행 (코딩 · 명령 · 설정)</td><td><span class="pill">sonnet</span></td></tr>
-    <tr><td>기획 · 설계 · 분석 · 트리아지 · 리뷰</td><td><span class="pill">opus</span></td></tr>
-  </table>
-  <p class="muted">에이전트의 기본 모델은 단계에 따라 오케스트레이터가 오버라이드합니다.</p>
+  <div class="listing-head">
+    <div class="card-icon">👥</div>
+    <div>
+      <h1>virtual-team</h1>
+      <span class="ver">v0.1.0 · MIT · withkali</span>
+    </div>
+  </div>
+  <div class="tags" style="margin-bottom:6px;">
+    <span class="tag accent">22 역할 에이전트</span>
+    <span class="tag">3 슬래시 명령</span>
+    <span class="tag">보안 훅</span>
+    <span class="tag">opus · sonnet · haiku</span>
+  </div>
 
-  <h2>역할 로스터 (22)</h2>
-  <h3>활성 — Phase 1·2</h3>
-  <table>
-    <tr><th>에이전트</th><th>역할</th><th>기본 모델</th></tr>
-    <tr><td>planner</td><td>기획자 — 기획서 작성/보강</td><td>opus</td></tr>
-    <tr><td>designer</td><td>UX/UI 설계 · 디자인 스펙</td><td>opus</td></tr>
-    <tr><td>client-ios</td><td>iOS (Swift/SwiftUI)</td><td>sonnet</td></tr>
-    <tr><td>client-android</td><td>Android (Kotlin/Compose)</td><td>sonnet</td></tr>
-    <tr><td>client-crossplatform</td><td>RN/Flutter</td><td>sonnet</td></tr>
-    <tr><td>web-ui</td><td>CSS 기반 UI 구현</td><td>sonnet</td></tr>
-    <tr><td>web-frontend</td><td>React/Next 프론트</td><td>sonnet</td></tr>
-    <tr><td>server-dba</td><td>DBA/코어 · 스키마 설계</td><td>sonnet</td></tr>
-    <tr><td>server-api</td><td>서비스 API/비즈니스</td><td>sonnet</td></tr>
-    <tr><td>infra-config</td><td>인프라 구성 (IaC)</td><td>sonnet</td></tr>
-    <tr><td>infra-monitoring</td><td>관측가능성 · 알람</td><td>sonnet</td></tr>
-    <tr><td>researcher</td><td>웹 검색 · fetch 전담</td><td>haiku</td></tr>
-  </table>
-  <h3>휴면 — Phase 3 (<code>/activate-phase3</code>로 활성화)</h3>
-  <table>
-    <tr><th>에이전트</th><th>역할</th><th>기본 모델</th></tr>
-    <tr><td>tester-client / tester-api</td><td>클라이언트 / API 테스트</td><td>sonnet</td></tr>
-    <tr><td>deploy-ios / -android / -web / -server / -db</td><td>플랫폼별 배포</td><td>sonnet</td></tr>
-    <tr><td>incident-server / -client</td><td>서버 / 클라 장애 대응</td><td>opus</td></tr>
-    <tr><td>incident-feedback</td><td>사용자 리뷰·반응 분석</td><td>opus</td></tr>
-  </table>
+  <div class="listing">
+    <!-- main -->
+    <div class="prose">
+      <p style="font-size:1.08rem;color:#c2cad8;">러프한 한 줄 아이디어를 던지면, 기획자가 기획서를 쓰고 → 디자이너·개발자들이 질의로 다듬고 → 승인 후 개발에 들어갑니다. 모든 파트가 자기 작업과 질의·답변을 기록으로 남깁니다.</p>
 
-  <h2>워크플로우</h2>
-  <ul>
-    <li><strong>Phase 1 — 기획 정합:</strong> 아이디어 → planner 기획서 → 파트 질의 → 보강 → 운영자 승인.</li>
-    <li><strong>Phase 2 — 개발:</strong> (필요 시 infra가 사전 요구사항 질의서 작성) → 각 파트 개발, 설계는 opus·구현은 sonnet → PR.</li>
-    <li><strong>Phase 3 — 운영:</strong> 테스트·배포·모니터링·장애관리. 기본 비활성, 운영자가 활성화 시 편입.</li>
-  </ul>
+      <h2>주요 기능</h2>
+      <div class="feature-grid">
+        <div class="feature"><span class="fi">🧩</span><h4>22개 역할 자동 분업</h4><p>오케스트레이터가 작업을 쪼개 적합한 파트에 위임하고 결과를 종합·보고합니다.</p></div>
+        <div class="feature"><span class="fi">🧠</span><h4>작업 유형별 모델</h4><p>검색=haiku, 실행=sonnet, 기획·설계·분석=opus로 자동 라우팅.</p></div>
+        <div class="feature"><span class="fi">🔒</span><h4>시크릿 차단 훅</h4><p>키·토큰·실제 .env가 코드에 들어가면 Write/Edit 단계에서 자동 차단.</p></div>
+        <div class="feature"><span class="fi">🚦</span><h4>단계적 워크플로우</h4><p>기획→개발은 활성, 테스트·배포·장애(Phase 3)는 승인 시 편입.</p></div>
+      </div>
 
-  <h2>기록(Records)</h2>
-  <p>모든 파트는 작업·질의/답변을 작업 디렉토리의 <code>records/&lt;slug&gt;/</code>에 남기고, 외부 산출물(GitHub Issue/PR)은 링크로 연결합니다. 로컬 파일은 "무엇을·어디서 확인하는지"의 인덱스입니다.</p>
+      <h2>슬래시 명령</h2>
+      <div class="cmd-row"><code>/new-service &lt;아이디어&gt;</code><span>Phase 1 시작 — slug·기획서 생성, 파트 질의 수집, 보강, 승인 요청</span></div>
+      <div class="cmd-row"><code>/team-roster</code><span>역할 로스터와 모델·단계 정책 출력</span></div>
+      <div class="cmd-row"><code>/activate-phase3 &lt;slug&gt;</code><span>테스트·배포·모니터링·장애관리 단계 편입</span></div>
 
-  <h2>보안 가드레일</h2>
-  <ul>
-    <li>키·credential <strong>하드코딩 금지</strong> — env/시크릿 매니저로만 주입, 저장소엔 <code>.env.example</code>만.</li>
-    <li>Write/Edit는 동봉된 <strong>secret-scan 훅</strong>이 자동 검사·차단(개인키·토큰·AWS/GCP 키·실제 <code>.env</code> 등).</li>
-    <li>클라/웹 하드코딩이 불가피하면 <strong>중단·보고·승인</strong>(백엔드 프록시·키 제한·회전 등 완화책 동반).</li>
-  </ul>
+      <h2>팀 로스터</h2>
+      <h3>활성 — 기획 · 개발 (Phase 1·2)</h3>
+      <div class="roles">
+        <div class="role">📋 planner <span class="m opus">opus</span></div>
+        <div class="role">🎨 designer <span class="m opus">opus</span></div>
+        <div class="role">🍎 client-ios <span class="m sonnet">sonnet</span></div>
+        <div class="role">🤖 client-android <span class="m sonnet">sonnet</span></div>
+        <div class="role">📱 client-cross <span class="m sonnet">sonnet</span></div>
+        <div class="role">💅 web-ui <span class="m sonnet">sonnet</span></div>
+        <div class="role">⚛️ web-frontend <span class="m sonnet">sonnet</span></div>
+        <div class="role">🗄️ server-dba <span class="m sonnet">sonnet</span></div>
+        <div class="role">🔌 server-api <span class="m sonnet">sonnet</span></div>
+        <div class="role">🏗️ infra-config <span class="m sonnet">sonnet</span></div>
+        <div class="role">📈 infra-monitoring <span class="m sonnet">sonnet</span></div>
+        <div class="role">🔎 researcher <span class="m haiku">haiku</span></div>
+      </div>
+      <h3>휴면 — 운영 (Phase 3 · <code>/activate-phase3</code>로 활성화)</h3>
+      <div class="roles">
+        <div class="role dim">🧪 tester-client <span class="m sonnet">sonnet</span></div>
+        <div class="role dim">🧪 tester-api <span class="m sonnet">sonnet</span></div>
+        <div class="role dim">🚀 deploy-ios <span class="m sonnet">sonnet</span></div>
+        <div class="role dim">🚀 deploy-android <span class="m sonnet">sonnet</span></div>
+        <div class="role dim">🚀 deploy-web <span class="m sonnet">sonnet</span></div>
+        <div class="role dim">🚀 deploy-server <span class="m sonnet">sonnet</span></div>
+        <div class="role dim">🚀 deploy-db <span class="m sonnet">sonnet</span></div>
+        <div class="role dim">🛟 incident-server <span class="m opus">opus</span></div>
+        <div class="role dim">🛟 incident-client <span class="m opus">opus</span></div>
+        <div class="role dim">💬 incident-feedback <span class="m opus">opus</span></div>
+      </div>
 
-  <h2>권한 · 자율성</h2>
-  <p>권한 allow/deny는 플러그인이 아니라 <code>settings.json</code>에 둡니다. 권장(균형): 로컬·가역 작업(읽기/쓰기/커밋/빌드/테스트)은 자동, <strong>원격 push·배포·prod/DB 변경·파괴적 명령·시크릿 하드코딩은 운영자 승인</strong>.</p>
-  <blockquote>한 번 승인한 위험 작업이 항상 승인된 것은 아닙니다 — 범위가 바뀌면 다시 확인합니다.</blockquote>
+      <h2>워크플로우</h2>
+      <ul>
+        <li><strong>Phase 1 · 기획 정합</strong> — 아이디어 → 기획서 → 파트 질의 → 보강 → 운영자 승인</li>
+        <li><strong>Phase 2 · 개발</strong> — (필요 시 인프라 사전 요구사항 질의) → 설계(opus)·구현(sonnet) → PR</li>
+        <li><strong>Phase 3 · 운영</strong> — 테스트·배포·모니터링·장애관리 (기본 비활성)</li>
+      </ul>
 
-  <footer>
-    <p><a href="index.html">← Hub</a> · <a href="https://github.com/withkali/kali-claude-plugin-hub">GitHub</a></p>
-  </footer>
+      <h2>보안 · 자율성</h2>
+      <ul>
+        <li>키·credential 하드코딩 금지 — env/시크릿 매니저로만, 저장소엔 <code>.env.example</code>만.</li>
+        <li>로컬·가역 작업은 자동 진행, <strong>원격 push·배포·prod 변경·시크릿 하드코딩은 운영자 승인</strong>.</li>
+      </ul>
+      <div class="callout">권한 allow/deny는 플러그인이 아니라 <code>settings.json</code>에 둡니다. 확인 프롬프트를 줄이려면 전역 <code>~/.claude/settings.json</code>에 균형 권한을 두세요.</div>
+    </div>
+
+    <!-- sidebar -->
+    <aside class="sidebar">
+      <h3>설치</h3>
+      <div class="cmd">
+        <code>/plugin marketplace add withkali/kali-claude-plugin-hub</code>
+        <button class="copy" data-copy="/plugin marketplace add withkali/kali-claude-plugin-hub">복사</button>
+      </div>
+      <div class="cmd">
+        <code>/plugin install virtual-team@kali-claude-plugin-hub</code>
+        <button class="copy" data-copy="/plugin install virtual-team@kali-claude-plugin-hub">복사</button>
+      </div>
+      <a class="btn btn-primary" style="width:100%;justify-content:center;margin-top:12px;" href="https://github.com/withkali/kali-claude-plugin-hub" target="_blank" rel="noopener">GitHub에서 보기 ↗</a>
+      <ul class="facts">
+        <li><span>버전</span><b>0.1.0</b></li>
+        <li><span>역할 에이전트</span><b>22</b></li>
+        <li><span>슬래시 명령</span><b>3</b></li>
+        <li><span>훅</span><b>secret-scan</b></li>
+        <li><span>라이선스</span><b>MIT</b></li>
+        <li><span>MCP 필요</span><b>없음</b></li>
+      </ul>
+    </aside>
+  </div>
 </div>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© kali · Claude Plugin Hub</span>
+    <span><a href="index.html">← Hub</a> · <a href="https://github.com/withkali/kali-claude-plugin-hub" target="_blank" rel="noopener">GitHub</a></span>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
 </body>
 </html>
