@@ -1,0 +1,9 @@
+{
+  "name": "virtual-team",
+  "version": "0.1.0",
+  "description": "앱/웹 서비스를 기획→개발→(운영)까지 자동화하는 가상 개발팀. 22개 역할 서브에이전트 + 시크릿 차단 훅 + 오케스트레이션 슬래시 명령.",
+  "author": { "name": "kali", "email": "withkali@gmail.com" },
+  "license": "MIT",
+  "keywords": ["agents", "orchestration", "team", "workflow", "security"],
+  "hooks": "./hooks/hooks.json"
+}

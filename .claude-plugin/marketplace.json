@@ -1,0 +1,16 @@
+{
+  "name": "kali-claude-plugin-hub",
+  "owner": { "name": "kali", "email": "withkali@gmail.com" },
+  "metadata": {
+    "description": "kali의 Claude Code 플러그인 허브 — 플러그인/스킬/MCP 설정 가이드 포함",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "virtual-team",
+      "source": "./plugins/virtual-team",
+      "description": "기획자·디자이너·클라/웹/서버 개발·인프라·테스터·배포·장애관리 22개 역할로 서비스를 자동 구축/운영하는 가상 팀.",
+      "version": "0.1.0"
+    }
+  ]
+}
