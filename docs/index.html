@@ -17,7 +17,8 @@
     <a class="brand" href="index.html"><span class="logo">k</span> Claude Plugin Hub</a>
     <div class="nav-links">
       <a href="#plugins">플러그인</a>
-      <a href="virtual-team.html">가이드</a>
+      <a href="virtual-team.html">virtual-team</a>
+      <a href="book-team.html">book-team</a>
       <a href="https://github.com/withkali/kali-claude-plugin-hub" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </div>
@@ -37,9 +38,9 @@
       <a class="btn btn-primary" href="#plugins">플러그인 둘러보기</a>
     </div>
     <div class="stats">
-      <div class="stat"><b>1</b><span>플러그인</span></div>
-      <div class="stat"><b>22</b><span>역할 에이전트</span></div>
-      <div class="stat"><b>3</b><span>슬래시 명령</span></div>
+      <div class="stat"><b>2</b><span>플러그인</span></div>
+      <div class="stat"><b>27</b><span>역할 에이전트</span></div>
+      <div class="stat"><b>6</b><span>슬래시 명령</span></div>
       <div class="stat"><b>1</b><span>보안 훅</span></div>
     </div>
   </div>
@@ -86,6 +87,27 @@
             <a class="btn btn-sm" href="virtual-team.html">자세히</a>
           </div>
         </article>
+
+        <article class="card" data-search="book-team 가상 출판팀 책 집필 소설 에세이 여행기 평론 출판 POD 전자책 일락 기획 디자인 감수">
+          <div class="card-top">
+            <div class="card-icon">📚</div>
+            <div class="card-title">
+              <span class="name">book-team</span>
+              <span class="ver">v0.1.0 · MIT</span>
+            </div>
+          </div>
+          <p class="desc">책 아이디어를 받아 <strong>기획 → 집필 → 디자인 → 감수 → 출판</strong>까지 자동화하는 가상 출판팀. 작가 <em>일락</em>이 6개 장르를 집필하고, POD·전자책 플랫폼 5곳에 맞춰 출판을 준비합니다.</p>
+          <div class="tags">
+            <span class="tag accent">5 에이전트</span>
+            <span class="tag">6개 장르</span>
+            <span class="tag">POD·전자책</span>
+            <span class="tag">작가 일락</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary btn-sm" data-copy="/plugin install book-team@kali-claude-plugin-hub">⤓ 설치 명령 복사</button>
+            <a class="btn btn-sm" href="book-team.html">자세히</a>
+          </div>
+        </article>
       </div>
 
       <div id="no-results" class="empty fade-hidden" style="margin-top:18px;">검색 결과가 없습니다.</div>
@@ -101,7 +123,10 @@
           <p>플러그인에 동봉되거나 단독으로 배포되는 재사용 절차.</p>
         </div>
       </div>
-      <div class="empty"><b>곧 추가됩니다.</b><br />현재 <code>virtual-team</code> 플러그인이 <code>/new-service</code> · <code>/team-roster</code> · <code>/activate-phase3</code> 스킬을 함께 제공합니다.</div>
+      <div class="empty"><b>곧 추가됩니다.</b><br />
+        현재 <code>virtual-team</code>이 <code>/new-service</code> · <code>/team-roster</code> · <code>/activate-phase3</code>,<br />
+        <code>book-team</code>이 <code>/new-book</code> · <code>/book-roster</code> · <code>/compile-essays</code> 스킬을 함께 제공합니다.
+      </div>
     </div>
   </section>
 
@@ -122,7 +147,7 @@
 <footer>
   <div class="container footer-inner">
     <span>© kali · Claude Plugin Hub</span>
-    <span><a href="virtual-team.html">virtual-team 가이드</a> · <a href="https://github.com/withkali/kali-claude-plugin-hub" target="_blank" rel="noopener">GitHub</a></span>
+    <span><a href="virtual-team.html">virtual-team</a> · <a href="book-team.html">book-team</a> · <a href="https://github.com/withkali/kali-claude-plugin-hub" target="_blank" rel="noopener">GitHub</a></span>
   </div>
 </footer>
 
