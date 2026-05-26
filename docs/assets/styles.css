@@ -82,6 +82,7 @@ h1, h2, h3 { font-family: "Space Grotesk", "Inter", sans-serif; font-weight: 600
 .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); }
 .hero h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero p.lead { color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.22rem); max-width: 620px; margin: 18px auto 0; }
+.lead-store { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(1.15rem, 2.6vw, 1.55rem); letter-spacing: -.02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; max-width: 620px; margin: 6px auto 0; }
 .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
 
 /* command box w/ copy */
@@ -106,11 +107,18 @@ section.block { padding: 40px 0; }
 .section-head h2 { font-size: 1.7rem; margin-top: 6px; }
 .section-head p { color: var(--muted); margin: 6px 0 0; }
 
-/* search */
+/* search — inline (legacy, kept for other uses) */
 .search { position: relative; max-width: 320px; width: 100%; }
 .search input { width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--fg); padding: 11px 14px 11px 38px; border-radius: 11px; font-size: .92rem; outline: none; transition: .15s; }
 .search input:focus { border-color: var(--accent); }
 .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--faint); }
+
+/* search-bar — full-width row above grid */
+.search-bar { position: relative; width: 100%; margin-bottom: 22px; }
+.search-bar input { width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--fg); padding: 14px 18px 14px 48px; border-radius: var(--radius-sm); font-size: 1rem; outline: none; transition: .15s; }
+.search-bar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(139,92,246,.15); }
+.search-bar input::placeholder { color: var(--faint); }
+.search-bar svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
 
 /* ---------- card grid ---------- */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
