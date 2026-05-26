@@ -61,30 +61,59 @@ publish/
 ### 1) 메타데이터 파일 생성 (`publish/metadata.md`)
 운영자에게 다음 항목을 확인 후 작성:
 - 제목 (최종 확정본)
-- 저자명: 일락 (실명 별도 등록 필요 시 운영자 확인)
+- 저자명: **일락** (영문 표기 없이 한국어 필명만 사용)
 - 분류: 플랫폼별 카테고리 코드
 - 정가: POD와 전자책 각각
 - 책 소개 (300자 내외)
 - 키워드 5~10개
 
-### 2) 빌드 스크립트 (`publish/scripts/build.sh`)
-Pandoc 기반 변환 스크립트 작성:
-```bash
-#!/bin/bash
-# Markdown 원고 → PDF/ePub 변환
-# 의존: pandoc, wkhtmltopdf 또는 weasyprint
+### 2) 빌드 스크립트
 
-# ePub 생성
-pandoc manuscript-final.md -o ../ebook/epub/book.epub \
-  --metadata-file=metadata.yaml \
+#### HTML·EPUB 기술서 형식 (Python 3 + Headless Chrome)
+
+pandoc/wkhtmltopdf **불필요**. Python 3 표준 라이브러리와 macOS Chrome만으로 동작한다.
+
+```
+scripts/make_ebook.py    ← EPUB + PDF 동시 생성
+epub/chapterNN.xhtml     ← 챕터 XHTML 소스 (새 챕터마다 추가)
+epub/style.css           ← EPUB 전용 CSS
+```
+
+실행:
+```bash
+python3 scripts/make_ebook.py
+```
+
+출력:
+```
+ebook/
+  <slug>-book.epub        # EPUB 3 단일 책 파일 (전 챕터 포함)
+  <slug>-chNN.pdf         # 챕터별 PDF (html/ 소스 → Headless Chrome 인쇄)
+```
+
+EPUB 생성 원리:
+- `epub/chapter*.xhtml` 파일을 파일명 순으로 자동 스캔
+- `<title>` 태그·`<h2 id="...">` 에서 제목·앵커 추출 → `nav.xhtml` + `content.opf` 동적 생성
+- ZIP 패키징 (mimetype은 ZIP_STORED, 나머지 ZIP_DEFLATED)
+
+PDF 생성 원리:
+- `html/chapter-NN.html` → Headless Chrome `--print-to-pdf`
+- `@media print` CSS로 박스·표·카드 단락 방지(`break-inside: avoid`) 적용됨
+
+#### 일반 Markdown 원고 (pandoc 사용 시)
+```bash
+# ePub 생성 (pandoc 필요)
+pandoc manuscript-final.md -o ebook/book.epub \
+  --metadata title="책 제목" \
+  --metadata author="일락" \
   --epub-cover-image=cover.jpg
 
-# PDF 생성 (내지)
-pandoc manuscript-final.md -o ../pod/bookk/interior.pdf \
+# PDF 생성 (wkhtmltopdf 또는 weasyprint 필요)
+pandoc manuscript-final.md -o pod/interior.pdf \
   --pdf-engine=wkhtmltopdf \
   -V geometry:a5paper,margin=2cm
 ```
-→ 의존 도구(pandoc 등) 설치 여부 먼저 확인 후 스크립트 조정.
+→ pandoc 미설치 시 `brew install pandoc` 또는 https://pandoc.org/installing.html 참고.
 
 ### 3) 업로드 가이드 (플랫폼별)
 각 플랫폼의 업로드 절차를 단계별로 문서화:
