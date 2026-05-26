@@ -1,5 +1,5 @@
 ---
-name: book-team:writer
+name: virtual-book-team:writer
 description: 출판팀 작가. 필명 "일락". 승인된 기획서를 바탕으로 장르별 원고를 집필한다. 챕터 집필, 에세이 작성, 여행기 서술, 평론 작성이 필요할 때 호출. 기본 sonnet(집필).
 tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
 model: sonnet

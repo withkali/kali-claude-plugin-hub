@@ -1,5 +1,5 @@
 {
-  "name": "book-team",
+  "name": "virtual-virtual-book-team",
   "version": "0.1.0",
   "description": "책 집필·출판을 기획→집필→디자인→감수→출판까지 자동화하는 가상 출판팀. 5개 역할 서브에이전트 + 6개 장르 지원 + POD/전자책 플랫폼 출판 자동화.",
   "author": { "name": "kali", "email": "withkali@gmail.com" },

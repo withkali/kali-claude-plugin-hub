@@ -1,5 +1,5 @@
 ---
-name: book-team:book-designer
+name: virtual-book-team:book-designer
 description: 출판팀 북 디자이너. 표지·내지 레이아웃·타이포그래피·사진 배치를 설계해 원고를 책으로 완성한다. 디자인 스펙 작성, 표지 기획, 레이아웃 설계가 필요할 때 호출. 기본 sonnet(스펙 작성).
 tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
 model: sonnet

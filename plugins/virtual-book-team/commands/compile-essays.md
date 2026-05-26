@@ -17,7 +17,7 @@ $ARGUMENTS
 3. 이미 발행/게시된 것들이 있는지 (저작권·독점 여부 확인)
 
 ### Step 2 — 수록 목록 및 순서 기획
-`book-team:planner` 에이전트를 **opus**로 호출:
+`virtual-book-team:planner` 에이전트를 **opus**로 호출:
 - 제공된 에세이/평론 목록을 분석해 책의 흐름 설계
 - 수록 순서 후보 2~3안 제시 (주제별·감성별·계절별·시간순 등)
 - 빠진 부분이 있으면 추가 집필이 필요한 항목 표시
@@ -26,21 +26,21 @@ $ARGUMENTS
 
 ### Step 3 — 추가 집필 (필요 시)
 수록 목록 확정 후, 빠진 에세이·평론이 있거나 서론/후기가 필요하면:
-`book-team:writer` 에이전트를 **sonnet**으로 호출해 추가 집필
+`virtual-book-team:writer` 에이전트를 **sonnet**으로 호출해 추가 집필
 
 ### Step 4 — 감수
-`book-team:reviewer` 에이전트를 **opus**로 호출:
+`virtual-book-team:reviewer` 에이전트를 **opus**로 호출:
 - 전체 수록 원고 오타·표현·흐름 점검
 - 편 간 스타일 일관성 확인
 - 감수 리포트 → `records/<book-slug>/qa/`
 
 ### Step 5 — 디자인 스펙
-`book-team:book-designer` 에이전트를 **sonnet**으로 호출:
+`virtual-book-team:book-designer` 에이전트를 **sonnet**으로 호출:
 - 에세이/평론집에 맞는 내지·표지 디자인 스펙
 - 짧은 글 모음집 특성에 맞는 페이지 구성 제안
 
 ### Step 6 — 출판 준비
-`book-team:publisher` 에이전트를 **sonnet**으로 호출:
+`virtual-book-team:publisher` 에이전트를 **sonnet**으로 호출:
 - 감수 완료 원고를 플랫폼별 파일로 정리
 - 업로드 가이드 및 메타데이터 작성
 

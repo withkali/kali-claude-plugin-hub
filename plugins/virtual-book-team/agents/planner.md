@@ -1,5 +1,5 @@
 ---
-name: book-team:planner
+name: virtual-book-team:planner
 description: 출판팀 기획자. 운영자와 대화하며 장르별 기획서·목차·컨셉을 수립한다. 새 책 프로젝트 시작, 기획 확정, 목차 재구성이 필요할 때 호출. 기본 opus(기획/설계).
 tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
 model: opus

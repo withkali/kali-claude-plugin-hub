@@ -1,5 +1,5 @@
 ---
-name: book-team:publisher
+name: virtual-book-team:publisher
 description: 출판팀 출판 담당자. 감수 완료 원고를 플랫폼별 출판 파일로 정리하고, 가능한 부분은 자동화한다. 파일 변환, 메타데이터 작성, 업로드 가이드 작성이 필요할 때 호출. 기본 sonnet(실행).
 tools: Read, Write, Edit, Grep, Glob, Bash, WebSearch, WebFetch
 model: sonnet

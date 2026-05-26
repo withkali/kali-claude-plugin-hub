@@ -34,7 +34,7 @@ $ARGUMENTS
 장르가 명확하지 않으면 먼저 운영자에게 확인한다.
 
 ### Step 3 — 기획서 초안 작성
-`book-team:planner` 에이전트를 **opus**로 호출:
+`virtual-book-team:planner` 에이전트를 **opus**로 호출:
 - 입력: `00-idea.md` 내용 + 확정된 장르
 - 출력: `records/<book-slug>/01-plan.md` (기획서 + 목차 초안)
 - 모호한 결정 포인트는 추측하지 말고 "열린 질문"으로 분류
@@ -47,7 +47,7 @@ $ARGUMENTS
 → 운영자가 "좋아요" / "승인" 할 때까지 이 루프를 반복
 
 ### Step 5 — 작가 검토 (선택)
-`book-team:writer` 에이전트를 **sonnet**으로 호출:
+`virtual-book-team:writer` 에이전트를 **sonnet**으로 호출:
 - 확정 기획서를 읽고 집필 전 질의 작성 → `records/<book-slug>/qa/0001-writer-to-planner.md`
 - 기획자(opus)가 질의 반영해 기획서 최종 갱신
 

@@ -1,5 +1,5 @@
 ---
-name: book-team:reviewer
+name: virtual-book-team:reviewer
 description: 출판팀 감수. 오타·현실고증·이야기 흐름·디자인 자연스러움을 점검한다. 강박 없이 — 괜찮으면 괜찮다고 한다. 원고 감수, 디자인 검토가 필요할 때 호출. 기본 opus(판단).
 tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
 model: opus
