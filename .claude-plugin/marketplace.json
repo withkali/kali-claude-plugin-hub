@@ -16,7 +16,7 @@
       "name": "virtual-book-team",
       "source": "./plugins/virtual-book-team",
       "description": "기획자·작가(일락)·북디자이너·감수·출판담당 5개 역할로 책을 기획→집필→디자인→감수→출판(POD/전자책)까지 자동화하는 가상 출판팀.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

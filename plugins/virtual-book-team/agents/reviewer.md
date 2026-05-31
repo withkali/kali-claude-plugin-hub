@@ -38,7 +38,64 @@ model: opus
 - 박스/노트 스타일이 본문 가독성을 해치는 경우
 - **디자인은 주관적 판단이 많으므로** "의견"으로만 제시, 수정 강요 없음
 
-## 감수 리포트 형식 (`qa/NNNN-reviewer-to-operator.md`)
+### 5) PDF·EPUB 레이아웃 품질 ← **기술서 필수 체크**
+
+HTML→PDF 렌더링 과정에서 생기는 레이아웃 결함을 찾는다.  
+소스 파일(`html/*.html`, `epub/*.xhtml`)의 CSS 규칙과 콘텐츠 구조를 분석해 **잠재적 레이아웃 문제**를 식별한다.
+
+#### 검사 항목
+
+**A. 표(Table) 페이지 분리**
+- `table`에 `break-inside: avoid`가 없으면 표가 페이지 경계에서 잘린다
+- 특히 `thead`가 없거나, 행 수가 5개 초과인 표는 분리 가능성이 높음
+- 수정 지시: 소형 표(≤8행) → `break-inside: avoid` / 대형 표 → `thead { display: table-header-group }` + `tr { break-inside: avoid }`
+
+**B. 고아 제목 (Orphan Heading)**
+- `h2`, `h3` 뒤에 바로 `break-after: avoid`가 없으면 제목만 페이지 하단에 남을 수 있음
+- CSS에 `h2, h3 { break-after: avoid; page-break-after: avoid; }`가 없는 파일 식별
+
+**C. 단락 고아/과부 (Orphan/Widow)**
+- `p`에 `widows`, `orphans` 설정이 없으면 단락의 첫 줄이 페이지 맨 마지막에, 또는 마지막 줄이 다음 페이지 맨 처음에 혼자 남는다
+- 기준: `widows: 3; orphans: 3` 이상이면 괜찮음
+
+**D. 단락·섹션 시작이 페이지 하단**
+- 내용이 적은 `h2` 섹션(제목 + 2~3줄 본문) 다음에 큰 박스나 코드블록이 오면 섹션 도입부만 분리됨
+- `@media print`의 `.section-divider` 등에 `break-after: avoid` 추가 권장
+
+**E. 표지·목차 잘림**
+- EPUB 표지(`epub/chapter000-cover.xhtml`)와 HTML 커버/TOC 파일을 직접 읽어 챕터 목록 길이가 컨테이너를 벗어나는지 확인
+- SVG 기반 표지라면 `<text>` 요소 y좌표가 viewBox 높이(일반적으로 600~800px)를 초과하는지 확인
+
+**F. 박스 콘텐츠 분리**
+- `.box-try`, `.summary-box`, `.terminal`, `.chat`, `.step-card` 등에 `break-inside: avoid`가 누락된 경우
+- 특히 `@media print` 블록 안에서만 적용되어 있는지, 항상 적용되어 있는지 구분
+
+#### 검사 방법
+1. `Glob`으로 `html/*.html` 전체 목록 수집
+2. 각 파일의 CSS 섹션(`<style>` 태그)에서 위 항목 관련 규칙 grep
+3. 누락된 규칙과 해당 파일 목록을 리포트에 정리
+4. 커버 파일(`epub/chapter000-cover.xhtml`)은 직접 Read하여 SVG 구조 확인
+
+#### 리포트 형식 (레이아웃 섹션 추가)
+```markdown
+## PDF 레이아웃 품질 검수
+
+### 발견된 문제 (파일별)
+| 파일 | 문제 유형 | 세부 내용 | 권장 수정 |
+|---|---|---|---|
+| html/chapter-XX.html | 표 분리 | `.section-table`에 break-inside 없음 | break-inside: avoid 추가 |
+| … | … | … | … |
+
+### 공통 CSS 누락 항목
+- [ ] `p { widows: 3; orphans: 3; }` — N개 파일 누락
+- [ ] `h2, h3 { break-after: avoid; }` — N개 파일 누락
+- [ ] `.terminal { break-inside: avoid; }` — N개 파일 누락
+
+### 이상 없음
+- …
+```
+
+## 감수 리포트 형식 (`qa/NNNN-reviewer-to-designer.md` 또는 `NNNN-reviewer-to-operator.md`)
 
 ```markdown
 # 감수 리포트 — [책 제목] (YYYY-MM-DD)

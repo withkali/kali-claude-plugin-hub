@@ -102,22 +102,88 @@ model: sonnet
 
 ### PDF 인쇄·단락 방지 규칙 ← **필수 적용**
 
+#### 기본 단락 제어 (`@media print` 또는 전역)
+```css
+/* 고아/과부 방지 — 단락 최소 3줄 유지 */
+p { widows: 3; orphans: 3; }
+
+/* 제목 고아 방지 — 제목 뒤에 최소 내용이 따라오도록 */
+h2, h3 { break-after: avoid; page-break-after: avoid; }
+
+/* 섹션 구분선 뒤에 바로 페이지 넘김 방지 */
+hr.section-divider { break-after: avoid; page-break-after: avoid; }
+```
+
+#### 콘텐츠 블록 `break-inside: avoid` 목록
 아래 요소에 반드시 `break-inside: avoid; page-break-inside: avoid;` 적용:
 
 ```css
-.box-try, .box-warn, .box-deep,  /* 박스 콘텐츠 */
-.feature-card,                    /* 기능 카드 */
-.journey-row,                     /* 여정 로드맵 행 */
-.compare-table tr,                /* 비교 테이블 행 */
-.pull-quote,                      /* 풀쿼트 */
-.summary-box,                     /* 요약 박스 */
-.prompt-block,                    /* 프롬프트 블록 */
-.chapter-goal                     /* 챕터 목표 카드 */
+/* 박스류 */
+.box-try, .box-warn, .box-deep,
+.summary-box, .chapter-goal, .pull-quote, .prompt-block,
+
+/* 카드·그리드 아이템 */
+.feature-card, .cmd-card, .step-card, .cmp-card,
+.bang-ex, .method-card, .scenario,
+
+/* 대화·코드 블록 */
+.chat, .terminal, .session-flow,
+
+/* 여정·비교 */
+.journey-row, .compare-cmd,
+
+/* 표 전체 (소형: ≤8행) */
+table
 ```
 
-제목 고아(orphan heading) 방지:
+#### 표(Table) 페이지 분리 방지 (대형 표 대응)
+행 수가 많아 `break-inside: avoid`를 표 전체에 적용하기 어려운 경우:
 ```css
-h2, h3 { break-after: avoid; page-break-after: avoid; }
+/* 헤더를 모든 페이지에서 반복 */
+thead { display: table-header-group; }
+
+/* 개별 행은 분리되지 않도록 */
+tr { break-inside: avoid; page-break-inside: avoid; }
+
+/* 소형 표는 전체 분리 방지 */
+table.no-break { break-inside: avoid; page-break-inside: avoid; }
+```
+> 운영 원칙: 행 수 ≤ 8개인 표는 `break-inside: avoid` 직접 적용. 9행 이상은 `tr` 단위 방지 + `thead` 반복.
+
+#### 표지·커버 목차 잘림 방지
+EPUB 표지(`epub/chapter000-cover.xhtml`)의 SVG 기반 챕터 목록이 잘리는 경우:
+- 챕터 목록 `<text>` 요소의 마지막 y좌표가 viewBox 하단(`height - padding`)을 초과하면 잘림
+- 수정 방법 (우선순위 순):
+  1. 줄 간격(`dy` 또는 y 증분) 축소 (e.g., `22px → 18px`)
+  2. 챕터 목록 폰트 크기 축소 (e.g., `13px → 11px`)
+  3. viewBox 높이 자체를 늘리되, `width/height` 비율(표준 2:3 = 600:900)을 유지
+  4. 목록을 2열로 분리 (챕터 수가 14개 초과인 경우)
+
+#### `@media print` 블록 완성형 (기술서 기본 템플릿)
+```css
+@media print {
+  body { background: white; }
+  .book-wrap { box-shadow: none; margin: 0; max-width: 100%; border: none; }
+  .book-wrap::before { display: none; }
+  .chapter-nav, .book-footer { display: none; }
+
+  /* 단락 고아/과부 */
+  p { widows: 3; orphans: 3; }
+
+  /* 제목 고아 */
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  hr.section-divider { break-after: avoid; page-break-after: avoid; }
+
+  /* 콘텐츠 블록 분리 방지 */
+  .box-try, .box-warn, .box-deep, .summary-box, .chapter-goal,
+  .terminal, .chat, .step-card, .cmd-card, .cmp-card,
+  .feature-card, .compare-cmd, .bang-ex, .session-flow,
+  .journey-row, table { break-inside: avoid; page-break-inside: avoid; }
+
+  /* 대형 표 행 분리 방지 */
+  tr { break-inside: avoid; page-break-inside: avoid; }
+  thead { display: table-header-group; }
+}
 ```
 
 ### EPUB 구조 관례
