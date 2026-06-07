@@ -34,3 +34,20 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+
+      - name: Notify Slack
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          JOB_STATUS: ${{ job.status }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          [ -z "${SLACK_WEBHOOK_URL:-}" ] && exit 0
+          LINK="${ISSUE_URL:-${PR_URL:-$RUN_URL}}"
+          MSG="🤖 Claude 작업 ${JOB_STATUS} — ${REPO} | 보기: ${LINK} | 로그: ${RUN_URL}"
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data "$(jq -nc --arg t "$MSG" '{text:$t}')" \
+            "$SLACK_WEBHOOK_URL" || true
