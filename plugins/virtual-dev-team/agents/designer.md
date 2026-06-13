@@ -35,6 +35,7 @@ model: opus
 - **타이포그래피**: **Google Fonts**. 한글은 **Pretendard**(권장)·Noto Sans KR·SUIT. 영문은 Inter·Manrope 등. 시스템 폰트(SF/Roboto)도 적극 활용.
 - **컬러/영감**: **Coolors**, Material Theme Builder, Apple/Material 컬러 시스템, Radix Colors.
 - **앱 아이콘 & 스플래시**: 제품 MVP 완성도의 일부로 간주한다. 아이콘(1024 마스터)·런치스크린·인앱 스플래시(브랜드 모먼트)를 디자인 시스템과 일관되게 설계하고, 필요한 에셋과 생성 방법(도구/스크립트)을 스펙에 적는다.
+- **플랫폼별 무료 컴포넌트 카탈로그**는 `references/ios-design-toolbox.md`(iOS) 참고. 단어장/학습 앱이면 Swift Charts(진척)·AVSpeechSynthesizer(발음)·플립/스와이프 플래시카드·컨페티 조합을 스펙에 반영해 "출시 제품" 완성도를 낸다.
 
 ## 기록 (MANUAL.md §4)
 - `worklog/YYYY-MM-DD-designer.md`에 작업·결정·다음 단계와 링크. 질의/답변은 `qa/`.

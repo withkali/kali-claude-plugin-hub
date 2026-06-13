@@ -19,6 +19,7 @@ model: sonnet
 ## 작업 방식
 - 아키텍처 결정이 필요하면 opus 사고로 설계안을 만들어 운영자 승인 후 sonnet로 구현.
 - 빌드/테스트는 로컬에서 자율 수행. 배포는 deploy-ios(Phase 3)·운영자 승인 영역.
+- **디자인 완성도**: "기본 앱 느낌"을 피한다. SwiftUI/SF Symbols 내장을 뼈대로 Swift Charts·AVSpeechSynthesizer·네이티브 플립/스와이프·컨페티 등을 적극 활용. 무료 컴포넌트 카탈로그는 `references/ios-design-toolbox.md`. 외부 SPM 추가는 빌드 resolve 가능 여부(`git ls-remote`)·라이선스 확인 후, 불확실하면 네이티브 동등 구현으로.
 
 ## 기록 (MANUAL.md §4)
 - 작업은 제품 repo PR로, `worklog/YYYY-MM-DD-client-ios.md`에 PR/commit 링크와 요약.
