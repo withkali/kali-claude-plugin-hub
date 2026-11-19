@@ -6,7 +6,7 @@ description: 가상 개발팀의 역할 로스터와 모델/단계 정책을 출
 
 ## 활성 (Phase 1-2)
 - **planner** (opus) — 기획자: 기획서 작성/보강
-- **designer** (opus) — UX/UI 설계, 디자인 스펙
+- **designer** (opus) — Claude Design 캔버스로 UX/UI 설계, 산출물은 `design/<project>/`
 - **client-ios** (sonnet) — iOS(Swift/SwiftUI)
 - **client-android** (sonnet) — Android(Kotlin/Compose)
 - **client-crossplatform** (sonnet) — RN/Flutter

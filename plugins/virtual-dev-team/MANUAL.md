@@ -71,6 +71,9 @@ records/
     qa/         worklog/
 ```
 
+### 디자인 산출물 — `design/<project>/`
+디자인은 **Claude Design 캔버스(아티팩트)** 로 만들고, 그 사본·색인·핸드오프를 모노레포의 `design/<project>/` 에 둔다(`ARTIFACT.md`, `HANDOFF*.md`, `canvas/project/*.dc.html`). 개발 에이전트는 Artifact 도구가 없으므로 **이 로컬 사본이 디자인의 기준**이다. `records/<product>/` 에는 질의(`qa/`)와 작업 로그(`worklog/`)만 두고, 로그에 캔버스 URL과 `design/<project>/` 경로를 링크한다. 상세 절차는 `agents/designer.md`.
+
 GitHub 매핑(인증 시): 제품 코드 = 배포 단위로 분리된 repo, 질의/답변 = Issues(파트 라벨), 작업 = PR, 중앙 기록 = `team-records` repo 인덱스. 로컬 파일은 "무엇을·어디서 확인"의 인덱스, 실제 산출물은 GitHub. 항상 링크. 상대 날짜는 절대 날짜로 기록.
 
 ---

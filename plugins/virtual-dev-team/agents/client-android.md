@@ -9,6 +9,7 @@ model: sonnet
 
 ## 책임
 - 기획/디자인을 Android 관점에서 검토해 질의(`qa/`): minSdk/targetSdk, 디바이스 단편화, 권한, 백그라운드 제약, Play 정책 영향.
+- **디자인 기준은 `design/<project>/`** (`ARTIFACT.md` → `HANDOFF*.md` → `canvas/project/*.dc.html`). 구현 전에 읽고, 어긋나거나 모호한 점은 임의로 정하지 말고 designer에게 질의(`qa/`).
 - 승인된 설계에 따라 Kotlin/Jetpack Compose로 구현. 네트워킹·상태관리·에러 처리·접근성 포함.
 - API 계약은 server-api와 합의된 스펙을 따른다. 불일치는 질의로 해소.
 

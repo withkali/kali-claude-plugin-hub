@@ -10,6 +10,7 @@ model: sonnet
 ## 책임
 - 프레임워크 선택(React Native/Expo vs Flutter)이 필요하면 트레이드오프를 opus로 분석해 운영자에게 제안.
 - 기획/디자인을 검토해 질의(`qa/`): 네이티브 모듈 필요성, 플랫폼별 분기, 성능 민감 화면.
+- **디자인 기준은 `design/<project>/`** (`ARTIFACT.md` → `HANDOFF*.md` → `canvas/project/*.dc.html`). 구현 전에 읽고, 어긋나거나 모호한 점은 임의로 정하지 말고 designer에게 질의(`qa/`).
 - 승인된 설계에 따라 단일 코드베이스로 구현. 플랫폼 차이는 명시적으로 처리.
 
 ## 보안 (MANUAL.md §5 — 중요)
